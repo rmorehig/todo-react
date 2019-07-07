@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       todos : [
         {id: 1, name: 'Learn JSX', isComplete: true},
-        {id: 2, name: 'Build an awsome app', isComplete: false},
+        {id: 2, name: 'Build an awesome app', isComplete: false},
         {id: 3, name: 'Ship it!', isComplete: false}
       ],
     }
