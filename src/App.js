@@ -41,7 +41,8 @@ class App extends Component {
     const updatedTodos = addTodo(this.state.todos,newTodo);
     this.setState({
       todos: updatedTodos,
-      currentTodo:''
+      currentTodo:'',
+      errorMessage: ''
     })
   }
 
@@ -53,7 +54,7 @@ class App extends Component {
   }
 
   render(){
-    const {currentTodo,todos} = this.state;
+    const {currentTodo,todos,errorMessage} = this.state;
     const submitHandler = currentTodo ? this.handleSubmit : this.handleSubmitEmpty;
     return (
       <div className="App">
@@ -62,6 +63,7 @@ class App extends Component {
         <h2>React Todos</h2>
         </div>
         <div className="Todo-App">
+          {errorMessage && <span className='error'>{errorMessage}</span>}
           <TodoForm currentTodo={currentTodo} 
             handleInputChange={this.handleInputChange}
             handleSubmit={submitHandler}/>
