@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {TodoForm,TodoList} from './components/todo'
 import logo from './logo.svg';
 import './App.css';
 
@@ -22,6 +23,7 @@ class App extends Component {
     });
   }
   render(){
+    const {currentTodo,todos} = this.state;
     return (
       <div className="App">
         <div className="App-header">
@@ -29,17 +31,8 @@ class App extends Component {
         <h2>React Todos</h2>
         </div>
         <div className="Todo-App">
-          <form>
-            <input type="text" value={this.state.currentTodo} onChange={this.handleInputChange}/>
-          </form>
-          <div className="Todo-List">
-            <ul>
-              {this.state.todos.map(todo => 
-                <li key={todo.id}>
-                  <input type="checkbox" checked={todo.isComplete}/>{todo.name}
-                  </li>)} 
-            </ul>
-          </div>
+          <TodoForm currentTodo={currentTodo} handleInputChange={this.handleInputChange}/>
+          <TodoList todos={todos}/>
         </div>
       </div>
     );
