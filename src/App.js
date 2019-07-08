@@ -37,7 +37,8 @@ class App extends Component {
     }
     const updatedTodos = addTodo(this.state.todos,newTodo);
     this.setState({
-      todos: updatedTodos
+      todos: updatedTodos,
+      currentTodo:''
     })
   }
 
