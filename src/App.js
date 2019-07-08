@@ -14,10 +14,12 @@ class App extends Component {
         {id: 3, name: 'Ship it!', isComplete: false},
         {id: 4, name: 'Desplegar en la nube', isComplete: false}
       ],
-      currentTodo:''
+      currentTodo:'',
+      errorMessage: ''
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitEmpty = this.handleSubmitEmpty.bind(this);
   }
 
   handleInputChange(evt){
@@ -27,12 +29,13 @@ class App extends Component {
   }
 
   handleSubmit(evt){
+    const {currentTodo} = this.state;
     //para evitar que refresque la página
     evt.preventDefault();
     const newId = generateId();
     const newTodo = {
       id: newId,
-      name: this.state.currentTodo,
+      name: currentTodo,
       isComplete: false,
     }
     const updatedTodos = addTodo(this.state.todos,newTodo);
@@ -42,8 +45,16 @@ class App extends Component {
     })
   }
 
+  handleSubmitEmpty(evt){
+    evt.preventDefault();
+    this.setState({
+      errorMessage: 'Please supply a todo name'
+    })
+  }
+
   render(){
     const {currentTodo,todos} = this.state;
+    const submitHandler = currentTodo ? this.handleSubmit : this.handleSubmitEmpty;
     return (
       <div className="App">
         <div className="App-header">
@@ -53,7 +64,7 @@ class App extends Component {
         <div className="Todo-App">
           <TodoForm currentTodo={currentTodo} 
             handleInputChange={this.handleInputChange}
-            handleSubmit={this.handleSubmit}/>
+            handleSubmit={submitHandler}/>
           <TodoList todos={todos}/>
         </div>
       </div>
