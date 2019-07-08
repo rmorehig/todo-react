@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types'
 export class Link extends Component {
+
+    handleClick = (evt) => {
+        //evitamos que se recargue la página
+        evt.preventDefault();
+        window.history.pushState(null,'',this.props.to)
+    }
 
     render() {
         return (
-            <a href="#">
+            <a href="#" onClick={this.handleClick}>
                 {this.props.children}
             </a>
         );
     }
+}
+
+Link.propTypes = {
+    to: PropTypes.string.isRequired,
 }
