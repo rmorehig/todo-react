@@ -2,8 +2,8 @@ import React from 'react';
 
 export const TodoItem = (props) => {
     return(
-        <li key={props.todo.id}>
-        <input type="checkbox" checked={props.todo.isComplete}/>{props.todo.name}
+        <li>
+        <input type="checkbox" defaultChecked={props.isComplete}/>{props.name}
         </li>
     )
 }
