@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {TodoForm,TodoList} from './components/todo'
+import {TodoForm,TodoList} from './components/todo';
 import logo from './logo.svg';
 import './App.css';
 
