@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types'
 
 export const TodoItem = (props) => {
+    const handleToggle = props.handleToggle.bind(null,props.id);
     return(
         <li>
-        <input type="checkbox" onChange={() => props.handleToggle(props.id)} defaultChecked={props.isComplete}/>{props.name}
+        <input type="checkbox" onChange={handleToggle} 
+        checked={props.isComplete}/>{props.name}
         </li>
     )
 }
