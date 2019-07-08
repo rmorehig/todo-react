@@ -16,3 +16,7 @@ export const updateTodo = (list,updated) => {
         ...list.slice(updateIndex+1)
     ]
 };
+
+export const removeTodo = (list,removed) => {
+    
+}
