@@ -5,30 +5,26 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      todos : [
-        {id: 1, name: 'Learn JSX', isComplete: true},
-        {id: 2, name: 'Build an awesome app', isComplete: false},
-        {id: 3, name: 'Ship it!', isComplete: false},
-        {id: 4, name: 'Desplegar en la nube', isComplete: false}
-      ],
-      currentTodo:'',
-      errorMessage: ''
-    }
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSubmitEmpty = this.handleSubmitEmpty.bind(this);
+
+  state = {
+    todos : [
+      {id: 1, name: 'Learn JSX', isComplete: true},
+      {id: 2, name: 'Build an awesome app', isComplete: false},
+      {id: 3, name: 'Ship it!', isComplete: false},
+      {id: 4, name: 'Desplegar en la nube', isComplete: false}
+    ],
+    currentTodo:'',
+    errorMessage: ''
   }
 
-  handleInputChange(evt){
+
+  handleInputChange = (evt) =>{
     this.setState({
       currentTodo: evt.target.value
     });
   }
 
-  handleSubmit(evt){
+  handleSubmit = (evt) => {
     const {currentTodo} = this.state;
     //para evitar que refresque la página
     evt.preventDefault();
@@ -46,7 +42,7 @@ class App extends Component {
     })
   }
 
-  handleSubmitEmpty(evt){
+  handleSubmitEmpty = (evt) => {
     evt.preventDefault();
     this.setState({
       errorMessage: 'Please supply a todo name'
