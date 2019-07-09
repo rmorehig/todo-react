@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import PropTypes from 'prop-types'
 import {TodoForm,TodoList,Footer} from './components/todo';
 import {addTodo,generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos} from './lib/todoHelpers'
-import {loadTodos} from './lib/todoService'
+import {loadTodos, createTodo} from './lib/todoService'
 import {pipe, partial} from './lib/utils'
 import logo from './logo.svg';
 import './App.css';
@@ -63,6 +63,13 @@ class App extends Component {
       currentTodo:'',
       errorMessage: ''
     })
+    createTodo(newTodo)
+      .then(()=> this.showTempMessage('Todo added'))
+  }
+
+  showTempMessage = (msg) => {
+    this.setState({message:msg})
+    setTimeout(() => this.setState({message:''}), 2500)
   }
 
   handleSubmitEmpty = (evt) => {
@@ -74,7 +81,7 @@ class App extends Component {
 
   
   render(){
-    const {currentTodo,todos,errorMessage} = this.state;
+    const {currentTodo,todos,errorMessage,message} = this.state;
     const submitHandler = currentTodo ? this.handleSubmit : this.handleSubmitEmpty;
     const displayTodos = filterTodos(todos,this.context.route)
     return (
@@ -85,6 +92,7 @@ class App extends Component {
         </div>
         <div className="Todo-App">
           {errorMessage && <span className='error'>{errorMessage}</span>}
+          {message && <span className='success'>{message}</span>}
           <TodoForm currentTodo={currentTodo} 
             handleInputChange={this.handleInputChange}
             handleSubmit={submitHandler}/>
