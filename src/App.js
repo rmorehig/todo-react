@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import PropTypes from 'prop-types'
 import {TodoForm,TodoList,Footer} from './components/todo';
 import {addTodo,generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos} from './lib/todoHelpers'
-import {loadTodos, createTodo, saveTodo} from './lib/todoService'
+import {loadTodos, createTodo, saveTodo, destroyTodo} from './lib/todoService'
 import {pipe, partial} from './lib/utils'
 import logo from './logo.svg';
 import './App.css';
@@ -31,6 +31,8 @@ class App extends Component {
     this.setState({
       todos: updatedTodos,
     })
+    destroyTodo(id)
+      .then(() => this.showTempMessage('Todo Removed') )
   }
 
   handleToggle = (id) => {
@@ -42,7 +44,7 @@ class App extends Component {
       todos: updatedTodos,
     })
     saveTodo(updated)
-      .then(() => this.showTempMessage('Todo updated') )
+      .then(() => this.showTempMessage('Todo Updated') )
   }
 
   handleInputChange = (evt) =>{
