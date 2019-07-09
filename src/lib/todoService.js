@@ -16,9 +16,9 @@ export const createTodo = (todo) => {
     }).then(res => res.json)
 }
 
-export const removeTodo = (todo) => {
-    return fetch(baseUrl, {
-        method: 'DELETE',
+export const saveTodo = (todo) => {
+    return fetch(`${baseUrl}/${todo.id}`, {
+        method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

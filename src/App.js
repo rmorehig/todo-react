@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import PropTypes from 'prop-types'
 import {TodoForm,TodoList,Footer} from './components/todo';
 import {addTodo,generateId, findById, toggleTodo, updateTodo, removeTodo, filterTodos} from './lib/todoHelpers'
-import {loadTodos, createTodo} from './lib/todoService'
+import {loadTodos, createTodo, saveTodo} from './lib/todoService'
 import {pipe, partial} from './lib/utils'
 import logo from './logo.svg';
 import './App.css';
@@ -34,11 +34,15 @@ class App extends Component {
   }
 
   handleToggle = (id) => {
-    const getUpdatedTodos = pipe(findById, toggleTodo, partial(updateTodo, this.state.todos))
-    const updatedTodos = getUpdatedTodos(id,this.state.todos);
+    const getToggledTodo = pipe(findById, toggleTodo)
+    const updated = getToggledTodo(id,this.state.todos)
+    const getUpdatedTodos = partial(updateTodo, this.state.todos)
+    const updatedTodos = getUpdatedTodos(updated);
     this.setState({
       todos: updatedTodos,
     })
+    saveTodo(updated)
+      .then(() => this.showTempMessage('Todo updated') )
   }
 
   handleInputChange = (evt) =>{

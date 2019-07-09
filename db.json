@@ -8,12 +8,12 @@
     {
       "id": 2,
       "name": "Start Server",
-      "isComplete": true
+      "isComplete": false
     },
     {
       "id": 3,
       "name": "Connect to Server",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": 4,
@@ -23,7 +23,7 @@
     {
       "id": 31281,
       "name": "New Todo",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": 84938,
@@ -33,7 +33,7 @@
     {
       "id": 6700,
       "name": "Prueba",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": 79297,
