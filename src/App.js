@@ -70,6 +70,7 @@ class App extends Component {
     })
   }
 
+  
   render(){
     const {currentTodo,todos,errorMessage} = this.state;
     const submitHandler = currentTodo ? this.handleSubmit : this.handleSubmitEmpty;
